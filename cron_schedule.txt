@@ -1,0 +1,28 @@
+# Cron Schedule for AI Employee Automation
+
+# This file contains example cron jobs for automating the AI Employee tasks
+# To install: crontab -e, then add these lines (adjust paths as needed)
+
+# Set the vault path
+VAULT_PATH=/mnt/h/GIAIC/aI_Employee_Vault/AI_Employee_Vault
+
+# Daily briefing at 8:00 AM
+0 8 * * * cd $VAULT_PATH && claude /daily-briefing >> Logs/daily-briefing.log 2>&1
+
+# Process inbox every hour during business hours (9 AM - 6 PM)
+0 9-18 * * * cd $VAULT_PATH && claude /process-inbox >> Logs/process-inbox.log 2>&1
+
+# Update dashboard every 30 minutes during business hours
+*/30 9-18 * * * cd $VAULT_PATH && claude /update-dashboard >> Logs/update-dashboard.log 2>&1
+
+# Weekly business review on Monday at 9:00 AM
+0 9 * * 1 cd $VAULT_PATH && claude "Generate weekly business review and update Dashboard" >> Logs/weekly-review.log 2>&1
+
+# Check for approvals every 15 minutes during business hours
+*/15 9-18 * * * cd $VAULT_PATH && claude /review-approvals >> Logs/review-approvals.log 2>&1
+
+# Cleanup old logs monthly (first day of month at 2 AM)
+0 2 1 * * find $VAULT_PATH/Logs -name "*.log" -mtime +90 -delete
+
+# Note: For Windows, use Task Scheduler instead of cron
+# See: https://docs.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page

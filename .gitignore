@@ -1,0 +1,68 @@
+# Git ignore file for AI Employee Vault
+
+# Credentials and tokens
+credentials.json
+token.pickle
+*.token
+*.key
+.env
+.env.local
+
+# Session data
+whatsapp_session/
+linkedin_session/
+*_session/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# Logs
+*.log
+Logs/*.log
+
+# Obsidian
+.obsidian/workspace
+.obsidian/workspace.json
+.obsidian/cache
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# UV
+uv.lock
+
+# Personal data (don't commit actual emails, messages, etc.)
+need_action/EMAIL_*.md
+need_action/WHATSAPP_*.md
+Done/EMAIL_*.md
+Done/WHATSAPP_*.md
+Briefings/*.md
+Logs/*.json
+
+# Keep structure but not content
+!need_action/.gitkeep
+!Done/.gitkeep
+!Briefings/.gitkeep
+!Logs/.gitkeep
