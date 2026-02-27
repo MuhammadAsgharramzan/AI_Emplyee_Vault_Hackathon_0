@@ -35,7 +35,7 @@ tier: Bronze 100% ✅ | Silver 90% 🎉
 - ✅ Filesystem monitoring ACTIVE - Real-time file processing
 - ✅ All code committed to GitHub
 - 📝 WhatsApp automation: Deferred (anti-automation challenges)
-- 📝 LinkedIn automation: Available for future setup
+- 📝 LinkedIn automation: Deferred (anti-automation challenges) - Manual posting recommended
 
 ## Pending Actions
 - 🔴 URGENT: Review $850 payment request in Pending_Approval/ (exceeds $500 threshold)

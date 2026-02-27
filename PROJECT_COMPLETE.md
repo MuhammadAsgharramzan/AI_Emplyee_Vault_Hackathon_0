@@ -67,6 +67,12 @@ A fully functional Personal AI Employee system that works 24/7 to:
 - Can be revisited if needed
 - Alternative: Use Gmail
 
+⏳ **LinkedIn Automation** (Deferred)
+- Multiple approaches attempted
+- Anti-automation detection blocks automation
+- Manual posting recommended (2 minutes)
+- Post drafts still generated automatically
+
 ---
 
 ## 📊 System Statistics
