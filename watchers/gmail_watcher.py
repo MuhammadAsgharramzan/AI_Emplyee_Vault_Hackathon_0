@@ -143,7 +143,7 @@ Add any relevant notes or observations here.
             # Save to need_action folder
             safe_subject = "".join(c for c in subject if c.isalnum() or c in (' ', '-', '_'))[:50]
             filepath = self.needs_action / f'EMAIL_{safe_subject}_{message["id"][:8]}.md'
-            filepath.write_text(content)
+            filepath.write_text(content, encoding='utf-8')
 
             # Mark as processed
             self.processed_ids.add(message['id'])
