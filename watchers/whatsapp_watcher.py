@@ -30,13 +30,27 @@ class WhatsAppWatcher(BaseWatcher):
                 page = browser.pages[0] if browser.pages else browser.new_page()
                 page.goto('https://web.whatsapp.com', timeout=60000)
 
-                # Wait for WhatsApp to load
+                # Wait for WhatsApp to load - check for QR code or chat list
+                self.logger.info('Waiting for WhatsApp Web to load...')
+
+                # First check if QR code is present (not logged in)
                 try:
-                    page.wait_for_selector('[data-testid="chat-list"]', timeout=30000)
+                    qr_code = page.wait_for_selector('canvas[aria-label="Scan this QR code to link a device!"]', timeout=5000)
+                    if qr_code:
+                        self.logger.info('QR CODE DETECTED! Please scan with your phone.')
+                        self.logger.info('Open WhatsApp on phone > Menu > Linked Devices > Link a Device')
+                        # Wait up to 2 minutes for user to scan
+                        page.wait_for_selector('[data-testid="chat-list"]', timeout=120000)
+                        self.logger.info('✅ WhatsApp authenticated successfully!')
                 except:
-                    self.logger.error('WhatsApp not loaded. Please scan QR code manually.')
-                    browser.close()
-                    return []
+                    # QR code not found, maybe already logged in
+                    try:
+                        page.wait_for_selector('[data-testid="chat-list"]', timeout=10000)
+                        self.logger.info('✅ WhatsApp already authenticated')
+                    except:
+                        self.logger.error('WhatsApp not loaded. Please try again.')
+                        browser.close()
+                        return []
 
                 # Find unread chats
                 unread_chats = page.query_selector_all('[aria-label*="unread"]')
